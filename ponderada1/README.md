@@ -16,3 +16,9 @@ Roda esse comando para a execução da API:
 ```
 python3 -m flask --app main run
 ```
+
+Para rodar a aplicação é necessario rodar o seguinte commando:
+
+```
+sudo docker compose up
+```
