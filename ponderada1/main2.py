@@ -29,12 +29,11 @@ if len(sys.argv) > 1 and sys.argv[1] == 'create_db':
     sys.exit(0)
 
 
-
 # Método para criar um token
 from flask_jwt_extended import create_access_token
 from flask_jwt_extended import jwt_required, get_jwt_identity
 @app.route("/token", methods=["POST"])
-def create_token():
+async def create_token():
     username = request.json.get("username", None)
     password = request.json.get("password", None)
     # Query your database for username and password
@@ -104,7 +103,7 @@ async def login():
         # the user was not found on the database
         return render_template("error.html", message="Bad username or password")
     # faz uma chamada para a criação do token
-    token_data = http_request.post("http://localhost:5000/token", json={"username": username, "password": password})
+    token_data = http_request.post("http://localhost:5001/token", json={"username": username, "password": password})
     if token_data.status_code != 200:
         return render_template("error.html", message="Bad username or password")
     # recupera o token
