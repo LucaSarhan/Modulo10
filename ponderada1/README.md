@@ -23,6 +23,5 @@ Para rodar a aplicação é necessario rodar o seguinte commando:
 sudo docker compose up
 ```
 
-teste da api:
-
-![](
+Os screenshots dos testes da api estão no seguinte diretório:
+/img
