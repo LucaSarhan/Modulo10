@@ -22,3 +22,7 @@ Para rodar a aplicação é necessario rodar o seguinte commando:
 ```
 sudo docker compose up
 ```
+
+teste da api:
+
+![](
