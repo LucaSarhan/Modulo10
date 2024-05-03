@@ -23,4 +23,4 @@ Para rodar a aplicação é necessario rodar o seguinte commando:
 sudo docker compose up
 ```
 
-![alt text](./img/Screenshot from 2024-05-03 06-00-15.png)
+![](./img/Screenshot from 2024-05-03 06-00-15.png)
