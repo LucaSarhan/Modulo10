@@ -23,4 +23,7 @@ Para rodar a aplicação é necessario rodar o seguinte commando:
 sudo docker compose up
 ```
 
-![](./img/Screenshot from 2024-05-03 06-00-15.png)
+![sync](./img/sync.png)
+![async](./img/async.png)
+![sync post](./img/sync-post.png)
+![async post](./img/async-post.png)
