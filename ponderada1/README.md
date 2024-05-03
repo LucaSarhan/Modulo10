@@ -22,6 +22,8 @@ Para rodar a aplicação é necessario rodar o seguinte commando:
 ```
 sudo docker compose up
 ```
+A API syncrona está no arquivo main e a assíncrona está no arquivo main2
+
 Sync:
 ![sync](./img/sync.png)
 ![sync post](./img/sync-post.png)
