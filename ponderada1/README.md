@@ -22,8 +22,10 @@ Para rodar a aplicação é necessario rodar o seguinte commando:
 ```
 sudo docker compose up
 ```
-
+Sync:
 ![sync](./img/sync.png)
-![async](./img/async.png)
 ![sync post](./img/sync-post.png)
+
+async:
+![async](./img/async.png)
 ![async post](./img/async-post.png)
