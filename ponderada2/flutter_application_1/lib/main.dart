@@ -11,7 +11,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter To Do List',
+      title: 'Flutter Demo',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
@@ -21,66 +21,31 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class MinhaPrimeiraTela extends StatefulWidget {
+class MinhaPrimeiraTela extends StatelessWidget {
   const MinhaPrimeiraTela({super.key});
 
   @override
-  State<MinhaPrimeiraTela> createState() => _MinhaPrimeiraTelaState();
-}
-
-class _MinhaPrimeiraTelaState extends State<MinhaPrimeiraTela> {
-  final List<String> _tasks = [];
-  final TextEditingController _taskController = TextEditingController();
-
-  void _addTask() {
-    if (_taskController.text.isNotEmpty) {
-      setState(() {
-        _tasks.add(_taskController.text);
-        _taskController.clear();
-      });
-    }
-  }
-
-  @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return  Scaffold(
       appBar: AppBar(
-        title: const Text('To Do List'),
+        title: const Text('Minha primeira tela'),
       ),
       body: Column(
-        children: <Widget>[
+        children:  <Widget>[
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: TextField(
-              controller: _taskController,
-              decoration: const InputDecoration(
-                labelText: 'Add a new task',
-                border: OutlineInputBorder(),
-              ),
+            child: Image.network('https://images.pexels.com/photos/8364804/pexels-photo-8364804.jpeg',
+              width: 300,
+              height: 300,
+              fit: BoxFit.cover,
             ),
           ),
-          ElevatedButton(
-            onPressed: _addTask,
-            child: const Text('Add Task'),
-          ),
-          Expanded(
-            child: ListView.builder(
-              itemCount: _tasks.length,
-              itemBuilder: (context, index) {
-                return ListTile(
-                  title: Text(_tasks[index]),
-                );
-              },
-            ),
-          ),
-          ElevatedButton(
-            onPressed: () {
+          ElevatedButton(onPressed: 
+            (){
               Navigator.push(context, MaterialPageRoute(builder: (context) => const MinhaSegundaTela()));
-            },
-            child: const Text("Mudar de Tela"),
-          ),
+            }, child: Text("Mudar de Tela")),
         ],
-      ),
+      )
     );
   }
 }
