@@ -38,4 +38,4 @@ flutter run
 
 # Video comprovando seu funcionamento
 
-[Link do video](https://drive.google.com/file/d/1lEiOXQG1FnxB1k0zJy2e-tDoTooQgFxd/view?usp=sharing)
+[Link do video](https://drive.google.com/file/d/1M3PY-T2VW3ttrAxCkwNFzQARmznILF6q/view?usp=sharing)
