@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:http/http.dart' as http;
 
-const String apiUrl = 'http://172.18.0.3:5000';
+const String apiUrl = 'http://172.18.0.2:5000';
 const String usersUrl = '$apiUrl/users';
 
 class MinhaSegundaTela extends StatefulWidget {
