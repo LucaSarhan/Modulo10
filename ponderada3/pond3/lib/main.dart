@@ -5,6 +5,7 @@ import 'package:pond3/sign_up.dart';
 import 'package:pond3/services/notification.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'dart:convert';
+import 'package:pond3/image-processor.dart';
 
 Future<void> main() async {
   await dotenv.load(fileName: ".env");
@@ -64,11 +65,13 @@ class _LoginPageState extends State<LoginPage> {
           title: 'Login Successful',
           body: 'Welcome back, ${data['username']}!',
         );
-        //Navigator.push(context, MaterialPageRoute(builder: (context) => const UserManagement()));
+        Navigator.push(context, MaterialPageRoute(builder: (context) => ImgProcessor()));
       } else {
         // Handle login error
         setState(() {
           _errorMessage = 'Invalid username or password';
+          // APAGAR DEPOIS
+          Navigator.push(context, MaterialPageRoute(builder: (context) => ImgProcessor()));
         });
       }
     
@@ -77,6 +80,8 @@ class _LoginPageState extends State<LoginPage> {
         setState(() {
           _isLoading = false;
           _errorMessage = 'Failed to login';
+          // APAGAR DEPOIS
+          Navigator.push(context, MaterialPageRoute(builder: (context) => ImgProcessor()));
         });
     }
   }
@@ -84,7 +89,7 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Login Page')),
+      appBar: AppBar(title: Text('Login')),
       body: Center(
         child: Padding(
           padding: const EdgeInsets.all(16.0),
@@ -92,18 +97,8 @@ class _LoginPageState extends State<LoginPage> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Text(
-                'Welcome, Login to your account',
-                style: TextStyle(
-                  fontSize: 24, 
-                  fontWeight: FontWeight.bold, 
-                  shadows: [
-                    Shadow(
-                      color: Colors.black.withOpacity(0.5), // Shadow color
-                      offset: Offset(2.0, 2.0), // Shadow position
-                      blurRadius: 4.0, // Shadow blur radius
-                    ),
-                  ],
-                ),
+                'Welcome Back!',
+                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
               ),
               SizedBox(height: 20),
               TextField(
@@ -111,7 +106,7 @@ class _LoginPageState extends State<LoginPage> {
                 decoration: InputDecoration(
                   labelText: 'Username',
                   border: OutlineInputBorder(),
-                  prefixIcon: Icon(Icons.people),
+                  prefixIcon: Icon(Icons.person),
                 ),
               ),
               SizedBox(height: 20),
@@ -120,7 +115,7 @@ class _LoginPageState extends State<LoginPage> {
                 decoration: InputDecoration(
                   labelText: 'Password',
                   border: OutlineInputBorder(),
-                  prefixIcon: Icon(Icons.security),
+                  prefixIcon: Icon(Icons.lock),
                 ),
                 obscureText: true,
               ),
@@ -144,7 +139,7 @@ class _LoginPageState extends State<LoginPage> {
                   Navigator.push(context, MaterialPageRoute(builder: (context) => RegisterPage()));
                 },
                 child: Text(
-                  'Sign Up',
+                  'Don\'t have an account? Register here',
                   style: TextStyle(
                     decoration: TextDecoration.underline,
                     color: Colors.blue,

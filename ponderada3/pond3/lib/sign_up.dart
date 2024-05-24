@@ -4,6 +4,7 @@ import 'package:http/http.dart' as http;
 import 'package:pond3/services/notification.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'dart:convert';
+import 'package:pond3/image-processor.dart';
 
 class RegisterPage extends StatefulWidget {
   @override
@@ -45,7 +46,7 @@ class _RegisterPageState extends State<RegisterPage> {
           title: 'Register Successful',
           body: 'Welcome, ${data['username']}!',
         );
-        //Navigator.push(context, MaterialPageRoute(builder: (context) => const UserManagement()));
+        Navigator.push(context, MaterialPageRoute(builder: (context) => ImgProcessor()));
       } else {
         setState(() {
           _errorMessage = 'Failed to register';
@@ -72,18 +73,8 @@ class _RegisterPageState extends State<RegisterPage> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Text(
-                'Sign up here',
-                style: TextStyle(
-                  fontSize: 24, 
-                  fontWeight: FontWeight.bold,
-                  shadows: [
-                    Shadow(
-                      color: Colors.black.withOpacity(0.5), // Shadow color
-                      offset: Offset(2.0, 2.0), // Shadow position
-                      blurRadius: 4.0, // Shadow blur radius
-                    ),
-                  ],
-                ),
+                'Register!',
+                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
               ),
               SizedBox(height: 20),
               TextField(
@@ -91,7 +82,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 decoration: InputDecoration(
                   labelText: 'Username',
                   border: OutlineInputBorder(),
-                  prefixIcon: Icon(Icons.people),
+                  prefixIcon: Icon(Icons.person),
                 ),
               ),
               SizedBox(height: 20),
@@ -100,7 +91,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 decoration: InputDecoration(
                   labelText: 'Email',
                   border: OutlineInputBorder(),
-                  prefixIcon: Icon(Icons.mail_outline),
+                  prefixIcon: Icon(Icons.email),
                 ),
               ),
               SizedBox(height: 20),
@@ -109,7 +100,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 decoration: InputDecoration(
                   labelText: 'Password',
                   border: OutlineInputBorder(),
-                  prefixIcon: Icon(Icons.security),
+                  prefixIcon: Icon(Icons.lock),
                 ),
                 obscureText: true,
               ),
