@@ -1,18 +1,18 @@
 version: '3'
 
 services:
-  service1:
-    build: ./service1
+  image_filter_service:
+    build: ./image_filter
     ports:
-      - "8001:8001"
-  service2:
-    build: ./service2
+      - "8001:81"
+  logger_service:
+    build: ./logger
     ports:
-      - "8002:8002"
-  service3:
-    build: ./service3
+      - "8002:82"
+  user_management_service:
+    build: ./user_management
     ports:
-      - "8003:8003"
+      - "8003:83"
   gateway:
     build: ./gateway
     ports:
