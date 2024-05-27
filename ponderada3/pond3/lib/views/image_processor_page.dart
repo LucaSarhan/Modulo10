@@ -50,7 +50,7 @@ class _ImgProcessorPageState extends State<ImgProcessorPage> {
         flexibleSpace: Container(
           decoration: BoxDecoration(
             gradient: LinearGradient(
-              colors: [Colors.black, Colors.yellow],
+              colors: [Colors.yellow, Colors.black],
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
             ),
@@ -92,7 +92,7 @@ class _ImgProcessorPageState extends State<ImgProcessorPage> {
                 icon: Icon(Icons.image),
                 label: Text('Selecionar Imagem'),
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.black,
+                  backgroundColor: Colors.yellow,
                   padding: EdgeInsets.symmetric(vertical: 16.0),
                   textStyle: TextStyle(fontSize: 16),
                 ),
@@ -113,7 +113,7 @@ class _ImgProcessorPageState extends State<ImgProcessorPage> {
                     ? CircularProgressIndicator(color: Colors.white)
                     : Text('Aplicar Filtro'),
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.yellow,
+                  backgroundColor: Colors.black,
                   padding: EdgeInsets.symmetric(vertical: 16.0),
                   textStyle: TextStyle(fontSize: 16),
                 ),

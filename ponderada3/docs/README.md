@@ -13,6 +13,12 @@ Antes de qualquer coisa vai ser necessário instalar as dependencias. Para isso 
 cd backend/image_filter
 pip install requirements
 ```
+Nesse terminal execute os seguintes comandos para instalar outras dependencias
+```
+cd backend/user_management
+pip install requirements
+```
+
 Nesse mesmo terminal execute o seguinte comando para voltar no diretório do backend
 
 ```
@@ -38,3 +44,7 @@ Após isso execute esse comando para rodar o frontend
 ```
 flutter run
 ```
+
+# Comprovante
+
+[Evidencia](https://drive.google.com/file/d/17XDYrYvWHj59XiLJfjpyCfoFly-4N4Gg/view?usp=sharing)
