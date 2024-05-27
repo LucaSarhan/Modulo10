@@ -18,7 +18,7 @@ class LoginController {
 
     try {
       final String? url = dotenv.env['URL'];
-      final String? userManagement = dotenv.env['USER_MANAGEMENTT'];
+      final String? userManagement = dotenv.env['USER_MANAGEMENT'];
 
       final response = await http.post(
         Uri.parse('$url/$userManagement/login'),
