@@ -34,7 +34,7 @@ class NotificationService {
   notificationDetails() {
     return const NotificationDetails(
         android: AndroidNotificationDetails('channelId', 'channelName',
-            icon: "@mipmap/Autobots-Logo",
+            icon: "@mipmap/autobots_logo",
             importance: Importance.max),
         iOS: DarwinNotificationDetails());
   }

@@ -4,7 +4,9 @@ import io
 
 app = Flask(__name__)
 
-@app.route('/upload', methods=['POST'])
+prefix = '/image_filter/'
+
+@app.route(f'{prefix}upload', methods=['POST'])
 def upload_file():
     if 'file' not in request.files:
         return "No file part", 400

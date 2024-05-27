@@ -1,31 +1,31 @@
 from flask import Flask, request, jsonify
-import logging
-from logging.handlers import RotatingFileHandler
+from database.database import db
+from database.models import Log
 
 app = Flask(__name__)
+app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///project.db"
+db.init_app(app)
 
-handler = RotatingFileHandler('events.log', maxBytes=10000, backupCount=3)
-handler.setLevel(logging.INFO)
-formatter = logging.Formatter('%(asctime)s - %(message)s')
-handler.setFormatter(formatter)
-app.logger.addHandler(handler)
+prefix = '/logger/'
 
-@app.route('/log', methods=['POST'])
+import sys
+if len(sys.argv) > 1 and sys.argv[1] == 'create_db':
+    # cria o banco de dados
+    with app.app_context():
+        db.create_all()
+    # Finaliza a execução do programa
+    print("Database created successfully")
+    sys.exit(0)
+
+@app.route(f"{prefix}log", methods=['POST'])
 def log_event():
-    data = request.get_json()    
-    if not data:
-        return jsonify({"error": "Invalid input, JSON required"}), 400    
-    
-    if 'user' not in data or 'action' not in data or 'time' not in data:
-        return jsonify({"error": "JSON must contain user, action, and time"}), 400    
-    
-    user = data['user']
-    action = data['action']
-    timestamp = data['time']    
-    
-    log_message = f"User: {user},\n Action: {action},\n Time: {timestamp}\n"
-    app.logger.info(log_message)    
-    return jsonify({"status": "success"}), 200
+    data = request.json
+    log = Log(username=data['username'], email=data['email'], action=data['action'], datetime=data['datetime'])
+    db.session.add(log)
+    db.session.commit()
+    return jsonify(log.serialize()), 201
 
-if __name__ == '__main__':
-    app.run(debug=True)
+@app.route(f"{prefix}log", methods=['GET'])
+def get_logs():
+    logs = Log.query.all()
+    return jsonify([log.serialize() for log in logs]), 200

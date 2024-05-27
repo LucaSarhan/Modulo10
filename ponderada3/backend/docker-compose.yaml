@@ -3,17 +3,21 @@ version: '3'
 services:
   image_filter_service:
     build: ./image_filter
+    container_name: image_filter
     ports:
       - "8001:81"
   logger_service:
     build: ./logger
+    container_name: logger
     ports:
       - "8002:82"
   user_management_service:
     build: ./user_management
+    container_name: user_management
     ports:
       - "8003:83"
   gateway:
     build: ./gateway
+    container_name: gateway
     ports:
       - "8000:80"

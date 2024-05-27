@@ -1,12 +1,11 @@
-import requests as http_request
-from flask import make_response
-from flask import Flask
+from flask import Flask, jsonify, request
 from database.database import db
-from flask import jsonify, request
 from database.models import User
+import requests
 
-from flask_jwt_extended import JWTManager, set_access_cookies
+from flask_jwt_extended import JWTManager, set_access_cookies, create_access_token, jwt_required, get_jwt_identity
 
+# Create the Flask app
 app = Flask(__name__)
 # configure the SQLite database, relative to the app instance folder
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///project.db"
@@ -18,6 +17,8 @@ app.config["JWT_SECRET_KEY"] = "goku-vs-vegeta"
 app.config['JWT_TOKEN_LOCATION'] = ['cookies']
 jwt = JWTManager(app)
 
+prefix = '/user_management/'
+
 # Verifica se o parâmetro create_db foi passado na linha de comando
 import sys
 if len(sys.argv) > 1 and sys.argv[1] == 'create_db':
@@ -28,30 +29,32 @@ if len(sys.argv) > 1 and sys.argv[1] == 'create_db':
     print("Database created successfully")
     sys.exit(0)
 
-
-# Método para criar um token
-from flask_jwt_extended import create_access_token
-from flask_jwt_extended import jwt_required, get_jwt_identity
-@app.route("/token", methods=["POST"])
+@app.route(f"{prefix}login", methods=["POST"])
 async def create_token():
     username = request.json.get("username", None)
     password = request.json.get("password", None)
     # Query your database for username and password
-    user = User.query.filter_by(email=username, password=password).first()
+    user = User.query.filter_by(username=username, password=password).first()
     if user is None:
         # the user was not found on the database
         return jsonify({"msg": "Bad username or password"}), 401
     
     # create a new token with the user id inside
     access_token = create_access_token(identity=user.id)
-    return jsonify({ "token": access_token, "user_id": user.id })
+    return jsonify({ "token": access_token, "user_id": user.id, "username": user.username})
 
-@app.route("/")
+@app.route(f"{prefix}protected", methods=["GET"])
+@jwt_required()
+async def protected():
+    current_user = get_jwt_identity()
+    return jsonify(logged_in_as=current_user), 200
+
+@app.route(f"{prefix}")
 async def hello_world():
     return "<p>Hello, World!</p>"
 
 # Adicionando as rotas CRUD para a entidade User
-@app.route("/users", methods=["GET"])
+@app.route(f"{prefix}users", methods=["GET"])
 async def get_users():
     users = User.query.all()
     return_users = []
@@ -59,30 +62,32 @@ async def get_users():
         return_users.append(user.serialize())
     return jsonify(return_users)
 
-@app.route("/users/<int:id>", methods=["GET"])
+@app.route(f"{prefix}users/<int:id>", methods=["GET"])
 async def get_user(id):
     user = User.query.get(id)
     return jsonify(user.serialize())
 
-@app.route("/users", methods=["POST"])
+@app.route(f"{prefix}users", methods=["POST"])
 async def create_user():
     data = request.json
-    user = User(name=data["name"], email=data["email"], password=data["password"])
+    user = User(username=data["username"], email=data["email"], password=data["password"])
+    exists = User.query.filter_by(email=user.email).first()
+    if exists: return jsonify({"error": "Email already in use!"}), 400
     db.session.add(user)
     db.session.commit()
     return jsonify(user.serialize())
 
-@app.route("/users/<int:id>", methods=["PUT"])
+@app.route(f"{prefix}users/<int:id>", methods=["PUT"])
 async def update_user(id):
     data = request.json
     user = User.query.get(id)
-    user.name = data["name"]
+    user.name = data["username"]
     user.email = data["email"]
     user.password = data["password"]
     db.session.commit()
     return jsonify(user.serialize())
 
-@app.route("/users/<int:id>", methods=["DELETE"])
+@app.route(f"{prefix}users/<int:id>", methods=["DELETE"])
 async def delete_user(id):
     user = User.query.get(id)
     db.session.delete(user)

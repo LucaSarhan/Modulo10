@@ -1,65 +1,29 @@
-import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
-import 'package:pond3/services/notification.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'dart:convert';
-import 'package:pond3/image-processor.dart';
+import 'package:pond3/controllers/sign_up_controller.dart';
 
-class RegisterPage extends StatefulWidget {
+class SignUpPage extends StatefulWidget {
   @override
-  _RegisterPageState createState() => _RegisterPageState();
+  _SignUpPageState createState() => _SignUpPageState();
 }
 
-class _RegisterPageState extends State<RegisterPage> {
+class _SignUpPageState extends State<SignUpPage> {
   final TextEditingController _usernameController = TextEditingController();
-  final TextEditingController _emailController    = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+  final SignUpController _SignUpController = SignUpController();
   bool _isLoading = false;
   String _errorMessage = '';
 
-  Future<void> _register() async {
+  void _setLoading(bool isLoading) {
     setState(() {
-      _isLoading = true;
-      _errorMessage = '';
+      _isLoading = isLoading;
     });
+  }
 
-    try {
-      final response = await http.post(
-        Uri.parse('${dotenv.env['API_URL']}/users'),
-        body: jsonEncode({
-          'username': _usernameController.text,
-          'email'   : _emailController.text,
-          'password': _passwordController.text,
-        }),
-        headers: {'Content-Type': 'application/json'},
-      );
-
-      setState(() {
-        _isLoading = false;
-      });
-
-      if (response.statusCode >= 200 && response.statusCode < 300) {
-        final data = jsonDecode(response.body);
-        print('Register successful: $data');
-        NotificationService().showNotification(
-          title: 'Register Successful',
-          body: 'Welcome, ${data['username']}!',
-        );
-        Navigator.push(context, MaterialPageRoute(builder: (context) => ImgProcessor()));
-      } else {
-        setState(() {
-          _errorMessage = 'Failed to register';
-        });
-      }
-    
-    } on Exception catch (e) {
-        print('Failed to register: $e');
-        setState(() {
-          _isLoading = false;
-          _errorMessage = 'Failed to register';
-        });
-    }
+  void _setErrorMessage(String errorMessage) {
+    setState(() {
+      _errorMessage = errorMessage;
+    });
   }
 
   @override
@@ -108,7 +72,17 @@ class _RegisterPageState extends State<RegisterPage> {
               _isLoading
                   ? CircularProgressIndicator()
                   : ElevatedButton(
-                      onPressed: _register,
+                      onPressed: () {
+                        _SignUpController.register(
+                          context,
+                          _usernameController,
+                          _emailController,
+                          _passwordController,
+                          setState,
+                          _setLoading,
+                          _setErrorMessage,
+                        );
+                      },
                       child: Text('Sign Up'),
                     ),
               SizedBox(height: 20),
