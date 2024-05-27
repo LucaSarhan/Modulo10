@@ -18,10 +18,10 @@ class SignUpController {
 
     try {
       final String? url = dotenv.env['URL'];
-      final String? userMgmt = dotenv.env['USER_MGMT'];
+      final String? userManagement = dotenv.env['USER_MANAGEMENT'];
 
       final response = await http.post(
-        Uri.parse('$url/$userMgmt/users'),
+        Uri.parse('$url/$userManagement/users'),
         body: jsonEncode({
           'username': usernameController.text,
           'email': emailController.text,

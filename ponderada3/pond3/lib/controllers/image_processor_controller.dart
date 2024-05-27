@@ -47,9 +47,9 @@ class ImgProcessorController {
     setLoading(true);
 
     final String? url = dotenv.env['URL'];
-    final String? imgFilter = dotenv.env['IMG_FILTER'];
+    final String? imageFilter = dotenv.env['IMAGE_FILTER'];
 
-    var request = http.MultipartRequest('POST', Uri.parse('$url/$imgFilter/upload'));
+    var request = http.MultipartRequest('POST', Uri.parse('$url/$imageFilter/upload'));
     request.files.add(await http.MultipartFile.fromPath('file', image.path));
 
     var response = await request.send();

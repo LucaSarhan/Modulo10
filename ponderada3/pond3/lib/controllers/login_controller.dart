@@ -18,10 +18,10 @@ class LoginController {
 
     try {
       final String? url = dotenv.env['URL'];
-      final String? userMgmt = dotenv.env['USER_MGMT'];
+      final String? userManagement = dotenv.env['USER_MANAGEMENTT'];
 
       final response = await http.post(
-        Uri.parse('$url/$userMgmt/login'),
+        Uri.parse('$url/$userManagement/login'),
         body: jsonEncode({
           'username': usernameController.text,
           'password': passwordController.text,
