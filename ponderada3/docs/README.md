@@ -47,4 +47,5 @@ flutter run
 
 # Comprovante
 
-[Evidencia](https://drive.google.com/file/d/1EVx_C7juCTMjwX788CkX1W057wHGTJYn/view?usp=sharing)
+[Evidencia video](https://drive.google.com/file/d/1UsZcOl0T75shMh5sU8Bl6Uwz8zIbxIDn/view?usp=sharing)
+[Evidencia foto notificações](https://drive.google.com/file/d/1_5b4jyii6TGMpPfpXKAUIq4dAYmaDhEA/view?usp=sharing)
