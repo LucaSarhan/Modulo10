@@ -51,10 +51,8 @@ class SignUpController {
           headers: {'Content-Type': 'application/json'},
         );
 
-        NotificationService().showNotification(
-          title: 'Register Successful',
-          body: 'Welcome, $username!',
-        );
+        NotificationService.showNotification('Registration successful',
+            'You have successfully registered. Please login to continue.');
 
         Navigator.pop(context);
       } else {

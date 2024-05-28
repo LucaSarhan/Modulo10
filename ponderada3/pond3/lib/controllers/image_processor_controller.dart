@@ -5,16 +5,13 @@ import 'package:image_picker/image_picker.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:path/path.dart' as path;
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:pond3/services/notification.dart';
 
 class ImgProcessorController {
   final ImagePicker _picker = ImagePicker();
 
-  Future<void> pickImage(
-    String? username, 
-    String? email, 
-    Function setImage, 
-    Function setFilteredImage
-  ) async {
+  Future<void> pickImage(String? username, String? email, Function setImage,
+      Function setFilteredImage) async {
     final pickedFile = await _picker.pickImage(source: ImageSource.gallery);
     if (pickedFile != null) {
       setImage(File(pickedFile.path));
@@ -35,13 +32,8 @@ class ImgProcessorController {
     }
   }
 
-  Future<void> uploadImage(
-    String? username, 
-    String? email, 
-    File? image, 
-    Function setLoading, 
-    Function setFilteredImage
-  ) async {
+  Future<void> uploadImage(String? username, String? email, File? image,
+      Function setLoading, Function setFilteredImage) async {
     if (image == null) return;
 
     setLoading(true);
@@ -49,7 +41,8 @@ class ImgProcessorController {
     final String? url = dotenv.env['URL'];
     final String? imageFilter = dotenv.env['IMAGE_FILTER'];
 
-    var request = http.MultipartRequest('POST', Uri.parse('$url/$imageFilter/upload'));
+    var request =
+        http.MultipartRequest('POST', Uri.parse('$url/$imageFilter/upload'));
     request.files.add(await http.MultipartFile.fromPath('file', image.path));
 
     var response = await request.send();
@@ -73,6 +66,9 @@ class ImgProcessorController {
         }),
         headers: {'Content-Type': 'application/json'},
       );
+
+      NotificationService.showNotification('Image processed',
+          'The image has been successfully processed. You can now download it.');
     } else {
       setLoading(false);
     }

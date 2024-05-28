@@ -6,11 +6,25 @@ import 'package:pond3/services/notification.dart';
 
 Future<void> main() async {
   await dotenv.load(fileName: ".env");
-  NotificationService().initNotification();
+  NotificationService.init();
   runApp(MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
+  MyApp({super.key});
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+
+  @override
+  void initState() {
+    NotificationService.allowed();
+    super.initState();
+  }
+    
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
