@@ -20,7 +20,7 @@ if len(sys.argv) > 1 and sys.argv[1] == 'create_db':
 @app.route(f"{prefix}log", methods=['POST'])
 def log_event():
     data = request.json
-    log = Log(username=data['username'], email=data['email'], action=data['action'], datetime=data['datetime'])
+    log = Log(action=data['action'], datetime=data['datetime'])
     db.session.add(log)
     db.session.commit()
     return jsonify(log.serialize()), 201
