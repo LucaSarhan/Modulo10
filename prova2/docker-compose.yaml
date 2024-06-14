@@ -1,0 +1,18 @@
+version: '3'
+
+services:
+  logger_service:
+    build: ./logger
+    container_name: logger
+    ports:
+      - "8002:82"
+  blog_post_service:
+    build: ./blog_post
+    container_name: blog_post
+    ports:
+      - "8003:83"
+  gateway:
+    build: ./gateway
+    container_name: gateway
+    ports:
+      - "8000:80"
