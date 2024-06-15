@@ -28,7 +28,7 @@ target_metadata = Base.metadata
 # ... etc.
 
 
-def run_migrations_offline() -> None:
+def migrations_run_offline() -> None:
     """Run migrations in 'offline' mode.
 
     This configures the context with just a URL
@@ -52,7 +52,7 @@ def run_migrations_offline() -> None:
         context.run_migrations()
 
 
-def run_migrations_online() -> None:
+def migrations_run_online() -> None:
     """Run migrations in 'online' mode.
 
     In this scenario we need to create an Engine
@@ -75,6 +75,6 @@ def run_migrations_online() -> None:
 
 
 if context.is_offline_mode():
-    run_migrations_offline()
+    migrations_run_offline()
 else:
-    run_migrations_online()
+    migrations_run_online()

@@ -11,8 +11,8 @@ import logging
 LOGGER = logging.getLogger(__name__)
 
 router = APIRouter(
-    prefix= "/userProducts",
-    tags=["userProducts", "usuarios"]
+    prefix= "/productsUser",
+    tags=["productsUser", "usuarios"]
 )
 
 @router.get("/usuarios/{usuario_id}")

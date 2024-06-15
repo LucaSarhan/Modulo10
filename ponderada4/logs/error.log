@@ -1,7 +1,13 @@
-2024/06/13 14:28:10 [error] 29#29: *1 connect() failed (113: No route to host) while connecting to upstream, client: 172.24.0.1, server: , request: "GET /userProducts HTTP/1.1", upstream: "http://172.24.0.2:80/userProducts", host: "localhost:3000"
-2024/06/13 14:29:24 [error] 29#29: *3 connect() failed (113: No route to host) while connecting to upstream, client: 172.24.0.1, server: , request: "GET /userProducts/produtos HTTP/1.1", upstream: "http://172.24.0.2:80/userProducts/produtos", host: "localhost:3000"
-2024/06/13 14:30:42 [error] 29#29: *5 connect() failed (113: No route to host) while connecting to upstream, client: 172.24.0.1, server: , request: "GET /userProducts HTTP/1.1", upstream: "http://172.24.0.2:80/userProducts", host: "localhost:3000"
-2024/06/13 14:33:53 [error] 29#29: *7 connect() failed (113: No route to host) while connecting to upstream, client: 172.24.0.1, server: , request: "GET /userProducts HTTP/1.1", upstream: "http://172.24.0.2:80/userProducts", host: "localhost:3000"
-2024/06/13 14:35:23 [error] 29#29: *9 connect() failed (113: No route to host) while connecting to upstream, client: 172.24.0.1, server: , request: "GET /userProducts HTTP/1.1", upstream: "http://172.24.0.2:80/userProducts", host: "localhost:3000"
+2024/06/13 14:28:10 [error] 29#29: *1 connect() failed (113: No route to host) while connecting to upstream, client: 172.24.0.1, server: , request: "GET /productsUser HTTP/1.1", upstream: "http://172.24.0.2:80/productsUser", host: "localhost:3000"
+2024/06/13 14:29:24 [error] 29#29: *3 connect() failed (113: No route to host) while connecting to upstream, client: 172.24.0.1, server: , request: "GET /productsUser/produtos HTTP/1.1", upstream: "http://172.24.0.2:80/productsUser/produtos", host: "localhost:3000"
+2024/06/13 14:30:42 [error] 29#29: *5 connect() failed (113: No route to host) while connecting to upstream, client: 172.24.0.1, server: , request: "GET /productsUser HTTP/1.1", upstream: "http://172.24.0.2:80/productsUser", host: "localhost:3000"
+2024/06/13 14:33:53 [error] 29#29: *7 connect() failed (113: No route to host) while connecting to upstream, client: 172.24.0.1, server: , request: "GET /productsUser HTTP/1.1", upstream: "http://172.24.0.2:80/productsUser", host: "localhost:3000"
+2024/06/13 14:35:23 [error] 29#29: *9 connect() failed (113: No route to host) while connecting to upstream, client: 172.24.0.1, server: , request: "GET /productsUser HTTP/1.1", upstream: "http://172.24.0.2:80/productsUser", host: "localhost:3000"
 2024/06/13 14:36:15 [error] 29#29: *11 "/etc/nginx/html/index.html" is not found (2: No such file or directory), client: 172.24.0.1, server: , request: "GET / HTTP/1.1", host: "localhost:3000"
-2024/06/14 08:26:16 [emerg] 1#1: host not found in upstream "userProducts:80" in /etc/nginx/nginx.conf:16
+2024/06/14 08:26:16 [emerg] 1#1: host not found in upstream "productsUser:80" in /etc/nginx/nginx.conf:16
+2024/06/15 09:26:42 [emerg] 1#1: host not found in upstream "productsUser:80" in /etc/nginx/nginx.conf:16
+2024/06/15 09:31:36 [emerg] 1#1: host not found in upstream "productsUser:80" in /etc/nginx/nginx.conf:16
+2024/06/15 09:35:11 [emerg] 1#1: host not found in upstream "productsUser:80" in /etc/nginx/nginx.conf:16
+2024/06/15 09:42:47 [emerg] 1#1: host not found in upstream "productsUser:80" in /etc/nginx/nginx.conf:16
+2024/06/15 09:47:40 [emerg] 1#1: host not found in upstream "userProducts:80" in /etc/nginx/nginx.conf:16
+2024/06/15 11:37:57 [emerg] 1#1: host not found in upstream "userProducts:80" in /etc/nginx/nginx.conf:16

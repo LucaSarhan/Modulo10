@@ -3,7 +3,7 @@
 from pydantic import BaseModel
 from datetime import datetime
 
-class Ordem(BaseModel):
+class Order(BaseModel):
     id: int
     id_user: int
     id_produto: int

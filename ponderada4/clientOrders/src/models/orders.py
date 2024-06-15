@@ -3,7 +3,7 @@ from sqlalchemy import Column, Integer, String, Double, DateTime
 from sqlalchemy.ext.declarative import declarative_base
 from .base import Base
 
-class Ordem(Base):
+class Order(Base):
     __tablename__ = 'ordens'
 
     id = Column(Integer, primary_key=True, autoincrement=True)

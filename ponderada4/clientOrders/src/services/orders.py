@@ -2,30 +2,30 @@
 
 from fastapi import HTTPException
 from sqlalchemy.orm import Session
-from repository.orders import OrdemRepository
-from models.orders import Ordem
-from schemas.orders import Ordem as OrdemSchema
+from repository.orders import OrderRepository
+from models.orders import Order
+from schemas.orders import Order as OrderSchema
 
-class OrdemService:
+class OrderService:
     def __init__(self, db: Session):
-        self.repository = OrdemRepository(db)
+        self.repository = OrderRepository(db)
 
-    def get(self, ordem_id):
-        ordem = self.repository.get(ordem_id)
-        if ordem is None:
+    def get(self, order_id):
+        order = self.repository.get(order_id)
+        if order is None:
             raise HTTPException(status_code=404, detail="Ordem não encontrada")
-        return ordem
+        return order
 
     def get_all(self):
         return self.repository.get_all()
 
-    def add(self, ordem : OrdemSchema):
-        ordem = Ordem(**ordem.dict())
-        return self.repository.add(ordem)
+    def add(self, order : OrderSchema):
+        order = Order(**order.dict())
+        return self.repository.add(order)
 
-    def update(self, ordem_id, ordem : OrdemSchema):
-        ordem = Ordem(**ordem.dict())
-        return self.repository.update(ordem_id, ordem)
+    def update(self, order_id, order : OrderSchema):
+        order = Order(**order.dict())
+        return self.repository.update(order_id, order)
 
-    def delete(self, ordem_id):
-        return self.repository.delete(ordem_id)
+    def delete(self, order_id):
+        return self.repository.delete(order_id)
