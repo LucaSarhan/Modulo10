@@ -1,5 +1,16 @@
 # Ponderada 4
 
+**Sistemas envolvidos:**
+
+Sistema de produtos e usuarios: 
+O sistema é responsável pelo gerenciamento de produtos e usuários, oferecendo funcionalidades de criação, leitura, atualização e exclusão (CRUD). Ele utiliza FastAPI para construir a API e SQLAlchemy para a interação com o banco de dados.
+
+Sistema de ordens:
+O sistema é responsável pelo gerenciamento de pedidos, permitindo a criação, leitura, atualização e exclusão (CRUD) de ordens. Ele utiliza FastAPI para desenvolver a API e SQLAlchemy para interagir com o banco de dados.
+
+Gateway:
+O  sistema atua como um redirecionador para os sistemas mencionados anteriormente. Ele possui logs integrados com filebeat, elasticsearch e kibana, que podem ser visualizados no repositorio.
+
 # Execução da atividade
 Para a execução do projeto vai ser necesário 1 terminal. 
 
